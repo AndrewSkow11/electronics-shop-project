@@ -1,3 +1,6 @@
+# homework 2 status
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -13,10 +16,22 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-
-        self.name = name
+        # сделали атрибут name приватным
+        self.__name = name
         self.price = price
         self.quantity = quantity
+
+    # добавление геттеров и сеттеров
+    # геттер
+    @property
+    def name(self):
+        return self.__name
+
+    # сеттер
+    @name.setter
+    def name(self, new_name):
+        self.__name = new_name
+
 
     def calculate_total_price(self) -> float:
         """
