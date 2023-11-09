@@ -7,7 +7,6 @@ class Item:
     Класс для представления товара в магазине.
     """
     pay_rate = 1.0
-
     # добавим объекты из csv_file
     all = []
 
@@ -28,7 +27,6 @@ class Item:
     # геттер
     @property
     def name(self):
-
         return self.__name
 
     # сеттер
@@ -39,11 +37,10 @@ class Item:
         символов)."""
 
         if len(new_name) <= 10:
-            print(len(new_name))
             self.__name = new_name
         else:
             self.__name = new_name[:10]
-            print(len(new_name))
+
 
     def calculate_total_price(self) -> float:
         """

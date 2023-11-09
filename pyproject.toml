@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 pytest = "^7.4.3"
 accessify = "^0.3.1"
+pytest-cov = "^4.1.0"
 
 
 [build-system]
