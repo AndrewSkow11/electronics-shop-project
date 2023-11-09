@@ -76,32 +76,17 @@ class Item:
         for item in list_of_items:
 
             name = item[0]
-            price = cls.string_to_number(item[1])
+            price = float(item[1])
             quantity = cls.string_to_number(item[2])
 
             cls.all.append(Item(name, price, quantity))
 
-            # for testing
-            # print('item[0]', item[0])
-            # print('item[1]', item[1])
-            # print('item[2]', item[2])
-
-            #cls.all.append( Item(item[0], float([1]), int(item[2]) ))
-
     @staticmethod
     def string_to_number(string_number):
         """статический метод, возвращающий число из числа-строки"""
+        # к int судя по тестам
         if '.' in string_number:
-            return float(string_number)
+            return int(float(string_number))
         else:
             return int(string_number)
 
-
-
-
-
-Item.instantiate_from_csv("items.csv")
-
-print(Item.all[0].name)
-print(Item.all[0].price)
-print(Item.all[0].quantity)
