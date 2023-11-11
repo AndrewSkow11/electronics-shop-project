@@ -23,6 +23,18 @@ class Item:
         self.price = price
         self.quantity = quantity
 
+    # assert repr(item1) == "Item('Смартфон', 10000, 20)"
+    # assert str(item1) == 'Смартфон'
+
+    # home_work 3
+    def __repr__(self):
+        return f"{Item.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return self.__name
+
+
+
     # добавление геттеров и сеттеров
     # геттер
     @property
