@@ -99,3 +99,9 @@ class Item:
         else:
             return int(string_number)
 
+    def __add__(self, other):
+        if (other.__class__.__name__ == "Phone"
+                or other.__class__.__name__ == "Item"):
+            return self.quantity + other.quantity
+        else:
+            raise Exception("Фатальная ошибка, нельзя так делать")

@@ -1,5 +1,5 @@
-from src.item import Item
 from src.phone import Phone
+from src.item import Item
 
 if __name__ == '__main__':
 
@@ -13,5 +13,10 @@ if __name__ == '__main__':
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
 
-    phone1.number_of_sim = 0
-    # ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.
+    # оставляю закоменченным, чтобы не было ошибки
+    # phone1.number_of_sim = 0
+    # # ValueError: Количество физических SIM-карт
+    # должно быть целым числом больше нуля.
+
+    phone1.number_of_sim = 3
+    assert phone1.number_of_sim == 3
