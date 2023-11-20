@@ -14,16 +14,13 @@ def test_init_(phone):
     assert phone.quantity == 100
     assert phone.number_of_sim == 1
 
-def test_add_phone(phone, smth):
-    assert phone + phone == 200
+def test_add_phone(phone):
+    assert 200 == phone + phone
 
 
-  def test_add_phone_raises():
-
-        with pytest.raises(Exception) as excinfo:
-            phone + smth.start_tasks_db('some/great/path', 'mysql')
-        exception_msg = excinfo.value.args[0]
-        assert exception_msg == "db_type must be a 'tiny' or 'mongo'"
+def test_add_phone_raises(phone, smth):
+    with pytest.raises(Exception):
+        phone + smth
 
 def test_number_of_sim_setter(phone):
     phone.number_of_sim = 3
