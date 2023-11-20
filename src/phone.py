@@ -33,28 +33,9 @@ class Phone(Item):
 
     @number_of_sim.setter
     def number_of_sim(self, value):
-        if value > 0 and type(value) == int:
+        if value > 0 and isinstance(value, int):
             self.__number_of_sim = value
         else:
             raise ValueError("Количество физических SIM-карт"
                               " должно быть целым числом больше нуля")
 
-phone1 = Phone("iPhone 14", 120_000,5, 2)
-assert str(phone1) == 'iPhone 14'
-assert repr(phone1) == "Phone('iPhone 14', 120000, 5, 2)"
-assert phone1.number_of_sim == 2
-
-item1 = Item("Смартфон", 10000, 20)
-assert item1 + phone1 == 25
-assert phone1 + phone1 == 10
-
-
-
-phone1.number_of_sim = 2
-# # ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.
-
-
-# phone1.name = 123
-# print(phone1.name)
-
-# print(phone1.number_of_sim)

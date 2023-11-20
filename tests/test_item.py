@@ -1,5 +1,6 @@
 import pytest
 from src.item import Item
+from something import smth
 
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
@@ -72,3 +73,9 @@ def test_str(item1, item2):
 # ============================== 7 passed in 0.01s ===============================
 #
 # Process finished with exit code 0
+
+
+def test_add_phone(item, smth):
+    assert phone + phone == 200
+    assert (phone + smth == pytest.
+            raises(Exception("Фатальная ошибка, нельзя так делать")))

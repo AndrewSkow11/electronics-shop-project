@@ -18,5 +18,4 @@ if __name__ == '__main__':
     # # ValueError: Количество физических SIM-карт
     # должно быть целым числом больше нуля.
 
-    phone1.number_of_sim = 3
-    assert phone1.number_of_sim == 3
+
