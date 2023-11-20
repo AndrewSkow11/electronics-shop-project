@@ -104,4 +104,4 @@ class Item:
                 or other.__class__.__name__ == "Item"):
             return self.quantity + other.quantity
         else:
-            raise Exception("Фатальная ошибка, нельзя так делать")
+            raise Exception("Фатальная ошибка, несовместимые типы данных")

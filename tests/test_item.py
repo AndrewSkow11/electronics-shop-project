@@ -1,6 +1,6 @@
 import pytest
 from src.item import Item
-from something import smth
+from tests.something import Something
 
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
@@ -74,8 +74,28 @@ def test_str(item1, item2):
 #
 # Process finished with exit code 0
 
+@pytest.fixture
+def smth_random_class():
+    return Something(5)
 
-def test_add_phone(item, smth):
-    assert phone + phone == 200
-    assert (phone + smth == pytest.
-            raises(Exception("Фатальная ошибка, нельзя так делать")))
+def test_add_phone_raises(item1, smth_random_class):
+    with pytest.raises(Exception):
+        # assert isinstance(smth_random_class, object)
+        item1 + smth_random_class()
+
+
+# ============================= test session starts ==============================
+# collecting ... collected 8 items
+#
+# test_item.py::test_calculate_total_price PASSED                          [ 12%]
+# test_item.py::test_aplay_discount PASSED                                 [ 25%]
+# test_item.py::test_name_setter PASSED                                    [ 37%]
+# test_item.py::test_instantiate_from_csv PASSED                           [ 50%]
+# test_item.py::test_string_to_number PASSED                               [ 62%]
+# test_item.py::test_repr PASSED                                           [ 75%]
+# test_item.py::test_str PASSED                                            [ 87%]
+# test_item.py::test_add_phone_raises PASSED                               [100%]
+#
+# ============================== 8 passed in 0.01s ===============================
+#
+# Process finished with exit code 0

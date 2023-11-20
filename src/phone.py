@@ -25,7 +25,7 @@ class Phone(Item):
                 or other.__class__.__name__ == "Item"):
             return self.quantity + other.quantity
         else:
-            raise Exception("Фатальная ошибка, нельзя так делать")
+            raise Exception("Фатальная ошибка, несовместимые типы данных")
 
     @property
     def number_of_sim(self):
@@ -39,3 +39,7 @@ class Phone(Item):
             raise ValueError("Количество физических SIM-карт"
                               " должно быть целым числом больше нуля")
 
+
+
+# phone = Phone('Smth', 200, 2, 2)
+# phone.number_of_sim = 0
