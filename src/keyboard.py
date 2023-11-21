@@ -1,6 +1,7 @@
 from abc import abstractmethod
 from src.item import Item
 
+
 class MixinChangeLanguage:
     lang = "EN"
 
@@ -9,6 +10,7 @@ class MixinChangeLanguage:
             return "RU"
         else:
             return "EN"
+
 
 class Keyboard(Item, MixinChangeLanguage):
     def __init__(self, name, price, quantity):

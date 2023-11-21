@@ -38,7 +38,7 @@ def test_name_setter():
 
 
 def test_instantiate_from_csv(item1):
-    Item.instantiate_from_csv('items_for_test.csv')
+    Item.instantiate_from_csv('items_for_test.csv') # ??
     assert len(Item.all) == 5  # в файле 5 записей с данными по товарам
     assert item1.name == 'Смартфон'
 
