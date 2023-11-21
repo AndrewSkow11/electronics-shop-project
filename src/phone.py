@@ -19,13 +19,13 @@ class Phone(Item):
 
     # Реализуйте проверки, чтобы нельзя было сложить Phone или Item
     # с экземплярами не Phone или Item классов.
-
-    def __add__(self, other):
-        if (other.__class__.__name__ == "Phone"
-                or other.__class__.__name__ == "Item"):
-            return self.quantity + other.quantity
-        else:
-            raise Exception("Фатальная ошибка, несовместимые типы данных")
+    # закомментил, так как всё поместил в родительский класс
+    # def __add__(self, other):
+    #     if (other.__class__.__name__ == "Phone"
+    #             or other.__class__.__name__ == "Item"):
+    #         return self.quantity + other.quantity
+    #     else:
+    #         raise Exception("Фатальная ошибка, несовместимые типы данных")
 
     @property
     def number_of_sim(self):
