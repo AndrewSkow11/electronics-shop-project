@@ -2,6 +2,7 @@ import pytest
 import os
 from src.item import Item, InstantiateCSVError
 from tests.something import Something
+
 # from src.instantiate_csv_error import InstantiateCSVError
 
 """Здесь надо написать тесты с использованием pytest для модуля item."""
@@ -88,6 +89,7 @@ def test_not_exist_file():
 
     with pytest.raises(FileNotFoundError, match='Отсутствует файл items.csv'):
         Item.instantiate_from_csv('one_more_strange_file')
+
 
 def test_incorrect_file():
     with pytest.raises(InstantiateCSVError, match='Файл item.csv поврежден'):

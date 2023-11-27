@@ -1,22 +1,8 @@
-(electronics-shop-project-py3.11) andrejskovorodnikov@MacBook-Air-Andrej electronics-shop-project % pytest --cov src
-
-========================================================================= test session starts =========================================================================
-platform darwin -- Python 3.11.5, pytest-7.4.3, pluggy-1.3.0
-rootdir: /Users/andrejskovorodnikov/Desktop/electronics-shop-project
-plugins: cov-4.1.0
-collected 18 items
-
-tests/test_item.py ..........                                                                                                                                   [ 55%]
-tests/test_keyboard.py ...                                                                                                                                      [ 72%]
-tests/test_phone.py .....                                                                                                                                       [100%]
-
----------- coverage: platform darwin, python 3.11.5-final-0 ----------
-Name                           Stmts   Miss  Cover
---------------------------------------------------
-src/__init__.py                    0      0   100%
-src/instantiate_csv_error.py       5      5     0%
-src/item.py                       57      0   100%
-src/keyboard.py                   17      0   100%
-src/phone.py                      17      2    88%
---------------------------------------------------
-TOTAL                             96      7    93%
+Name              Stmts   Miss  Cover
+-------------------------------------
+src/__init__.py       0      0   100%
+src/item.py          57      0   100%
+src/keyboard.py      17      0   100%
+src/phone.py         17      2    88%
+-------------------------------------
+TOTAL                91      2    98%
