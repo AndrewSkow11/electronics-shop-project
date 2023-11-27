@@ -1,6 +1,19 @@
-# homework 2 status
-import csv
+# homework 6 status
 
+# Исключения. Домашнее задание
+
+## Описание задачи
+
+#
+#
+# Тестирование:
+# - Напишите тесты для нового функционала
+
+## Ожидаемое поведение
+# - Код в файле `main.py` должен выдавать ожидаемые значения
+
+import csv
+from src.instantiate_csv_error import InstantiateCSVError
 
 class Item:
     """
@@ -69,26 +82,40 @@ class Item:
         self.price *= self.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls, filename):
+    def instantiate_from_csv(cls, filename='../src/item.csv'):
         """класс-метод, инициализирующий экземпляры класса Item
         данными из файла src/items.csv"""
 
         list_of_items = []
 
-        with (open(filename, newline='', encoding='windows-1251') as csvfile):
-            content = csv.reader(csvfile)
-            for line in content:
-                list_of_items.append(line)
+        try:
+            with (open(filename, newline='', encoding='windows-1251') as csvfile):
+                content = csv.reader(csvfile)
+                for line in content:
+                    list_of_items.append(line)
+        except:
+            raise FileNotFoundError('Отсутствует файл item.csv')
+        else:
+            del list_of_items[0]  # удаляем заголовочную строку
 
-        del list_of_items[0]  # удаляем заголовочную строку
+            try:
+                for item in list_of_items:
+                    name = item[0]
+                    price = float(item[1])
+                    quantity = cls.string_to_number(item[2])
+                    cls.all.append(Item(name, price, quantity))
+            except:
+                raise InstantiateCSVError
 
-        for item in list_of_items:
-
-            name = item[0]
-            price = float(item[1])
-            quantity = cls.string_to_number(item[2])
-
-            cls.all.append(Item(name, price, quantity))
+        # Добавьте в метод `instantiate_from_csv()` класса `Item` обработку исключений:
+        #
+        # - если файл `items.csv`, из которого по умолчанию считываются данные,
+        # не найден → выбрасывается исключение `FileNotFoundError` с сообщением
+        # “_Отсутствует файл item.csv_"
+        # - если файл `item.csv` поврежден (например, отсутствует одна из колонок данных) → выбрасывается
+        # исключение `InstantiateCSVError` с сообщением “_Файл item.csv поврежден_”.
+        #
+        # Класс-исключение `InstantiateCSVError` реализуйте самостоятельно.
 
     @staticmethod
     def string_to_number(string_number):

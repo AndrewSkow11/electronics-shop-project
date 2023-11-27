@@ -1,6 +1,8 @@
 import pytest
+import os
 from src.item import Item
 from tests.something import Something
+import pathlib
 
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
@@ -38,7 +40,19 @@ def test_name_setter():
 
 
 def test_instantiate_from_csv(item1):
+    # new_path = os.path.join(directory, 'new_file.txt')
+    # pathlib
+
+    # relative_path = "items_for_test.csv"
+    # filename = os.path.abspath(relative_path)
+
+    directory = 'tests'
+    filename = 'items_for_test.csv'
+
+    new_path = os.path.join(directory, filename)
+
     Item.instantiate_from_csv('items_for_test.csv') # ??
+    # Item.instantiate_from_csv(filename)
     assert len(Item.all) == 5  # в файле 5 записей с данными по товарам
     assert item1.name == 'Смартфон'
 
