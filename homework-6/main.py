@@ -21,7 +21,7 @@ if __name__ == '__main__':
     # Process finished with exit code 1
 
     # В файле items.csv удалена последняя колонка.
-    Item.instantiate_from_csv()
+    Item.instantiate_from_csv('../tests/incorrect_file.csv')
     # InstantiateCSVError: Файл item.csv поврежден
 
     # Traceback (most recent call last):

@@ -1,8 +1,8 @@
 import pytest
 import os
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from tests.something import Something
-import pathlib
+# from src.instantiate_csv_error import InstantiateCSVError
 
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
@@ -30,6 +30,7 @@ def test_aplay_discount(item1, item2):
     assert item1.price == 8000.0
     assert item2.price == 20000
 
+
 # длина наименования товара меньше 10 символов
 def test_name_setter():
     item = Item('Телефон', 10000, 5)
@@ -40,27 +41,22 @@ def test_name_setter():
 
 
 def test_instantiate_from_csv(item1):
-    # new_path = os.path.join(directory, 'new_file.txt')
-    # pathlib
+    # file_relative_path = "items_for_test.csv"
+    # file_abs_path = os.path.abspath(file_relative_path)
+    # file_for_coverage = 'tests/items_for_test.csv'
 
-    # relative_path = "items_for_test.csv"
-    # filename = os.path.abspath(relative_path)
-
-    directory = 'tests'
-    filename = 'items_for_test.csv'
-
-    new_path = os.path.join(directory, filename)
-
-    Item.instantiate_from_csv('items_for_test.csv') # ??
-    # Item.instantiate_from_csv(filename)
+    Item.instantiate_from_csv('items_for_test.csv')  # ??
     assert len(Item.all) == 5  # в файле 5 записей с данными по товарам
     assert item1.name == 'Смартфон'
+
+    # print('\nАбсолютный путь:', file_abs_path)
 
 
 def test_string_to_number():
     assert Item.string_to_number('5') == 5
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5
+
 
 # home work 3
 
@@ -73,24 +69,11 @@ def test_str(item1, item2):
     assert item1.__str__() == "Смартфон"
     assert item2.__str__() == "Ноутбук"
 
-# ============================= test session starts ==============================
-# collecting ... collected 7 items
-#
-# test_item.py::test_calculate_total_price PASSED                          [ 14%]
-# test_item.py::test_aplay_discount PASSED                                 [ 28%]
-# test_item.py::test_name_setter PASSED                                    [ 42%]
-# test_item.py::test_instantiate_from_csv PASSED                           [ 57%]
-# test_item.py::test_string_to_number PASSED                               [ 71%]
-# test_item.py::test_repr PASSED                                           [ 85%]
-# test_item.py::test_str PASSED                                            [100%]
-#
-# ============================== 7 passed in 0.01s ===============================
-#
-# Process finished with exit code 0
 
 @pytest.fixture
 def smth_random_class():
     return Something(5)
+
 
 def test_add_phone_raises(item1, smth_random_class):
     with pytest.raises(Exception):
@@ -98,18 +81,34 @@ def test_add_phone_raises(item1, smth_random_class):
         item1 + smth_random_class()
 
 
+# for homework 6
+def test_not_exist_file():
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('this_file_exists_only_in_your_head')
+
+    with pytest.raises(FileNotFoundError, match='Отсутствует файл items.csv'):
+        Item.instantiate_from_csv('one_more_strange_file')
+
+def test_incorrect_file():
+    with pytest.raises(InstantiateCSVError, match='Файл item.csv поврежден'):
+        Item.instantiate_from_csv('incorrect_file.csv')
+
+# RESULTS
+
 # ============================= test session starts ==============================
-# collecting ... collected 8 items
+# collecting ... collected 10 items
 #
-# test_item.py::test_calculate_total_price PASSED                          [ 12%]
-# test_item.py::test_aplay_discount PASSED                                 [ 25%]
-# test_item.py::test_name_setter PASSED                                    [ 37%]
-# test_item.py::test_instantiate_from_csv PASSED                           [ 50%]
-# test_item.py::test_string_to_number PASSED                               [ 62%]
-# test_item.py::test_repr PASSED                                           [ 75%]
-# test_item.py::test_str PASSED                                            [ 87%]
-# test_item.py::test_add_phone_raises PASSED                               [100%]
+# test_item.py::test_calculate_total_price PASSED                          [ 10%]
+# test_item.py::test_aplay_discount PASSED                                 [ 20%]
+# test_item.py::test_name_setter PASSED                                    [ 30%]
+# test_item.py::test_instantiate_from_csv PASSED                           [ 40%]
+# test_item.py::test_string_to_number PASSED                               [ 50%]
+# test_item.py::test_repr PASSED                                           [ 60%]
+# test_item.py::test_str PASSED                                            [ 70%]
+# test_item.py::test_add_phone_raises PASSED                               [ 80%]
+# test_item.py::test_not_exist_file PASSED                                 [ 90%]
+# test_item.py::test_incorrect_file PASSED                                 [100%]
 #
-# ============================== 8 passed in 0.01s ===============================
+# ============================== 10 passed in 0.01s ==============================
 #
 # Process finished with exit code 0

@@ -13,7 +13,7 @@
 # - Код в файле `main.py` должен выдавать ожидаемые значения
 
 import csv
-from src.instantiate_csv_error import InstantiateCSVError
+
 
 class Item:
     """
@@ -46,8 +46,6 @@ class Item:
     def __str__(self):
         return self.__name
 
-
-
     # добавление геттеров и сеттеров
     # геттер
     @property
@@ -66,7 +64,6 @@ class Item:
         else:
             self.__name = new_name[:10]
 
-
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -82,19 +79,20 @@ class Item:
         self.price *= self.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls, filename='../src/item.csv'):
+    def instantiate_from_csv(cls, filename='../src/items.csv'):
         """класс-метод, инициализирующий экземпляры класса Item
         данными из файла src/items.csv"""
 
         list_of_items = []
 
         try:
-            with (open(filename, newline='', encoding='windows-1251') as csvfile):
+            with (open(filename, newline='', encoding='windows-1251')
+                  as csvfile):
                 content = csv.reader(csvfile)
                 for line in content:
                     list_of_items.append(line)
         except:
-            raise FileNotFoundError('Отсутствует файл item.csv')
+            raise FileNotFoundError('Отсутствует файл items.csv')
         else:
             del list_of_items[0]  # удаляем заголовочную строку
 
@@ -132,3 +130,13 @@ class Item:
             return self.quantity + other.quantity
         else:
             raise Exception("Фатальная ошибка, несовместимые типы данных")
+
+
+class InstantiateCSVError(Exception):
+    """Общий класс исключения при ошибке инициации из csv-файла"""
+
+    def __init__(self, ):
+        self.message = 'Файл item.csv поврежден'
+
+    def __str__(self):
+        return self.message
